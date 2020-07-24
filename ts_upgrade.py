@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import datetime
 import re
 import sys
 import tarfile
@@ -54,6 +55,12 @@ def upgrade(version, dry_run=False):
 
     with tarfile.open(download_file_path, "r:bz2") as release:
         release.extractall("/tmp/")
+
+    timestamp = datetime.datetime.now().timestamp()
+    dir_util.copy_tree(
+        TEAMSPEAK_INSTALLATION_PATH,
+        f"{TEAMSPEAK_INSTALLATION_PATH}.{timestamp}",
+    )
 
     dir_util.copy_tree(
         "/tmp/teamspeak3-server_linux_amd64/",
