@@ -60,6 +60,7 @@ def upgrade(version, dry_run=False):
     dir_util.copy_tree(
         TEAMSPEAK_INSTALLATION_PATH,
         f"{TEAMSPEAK_INSTALLATION_PATH}.{timestamp}",
+        dry_run=int(dry_run),
     )
 
     dir_util.copy_tree(
